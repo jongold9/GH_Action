@@ -15,7 +15,7 @@ jobs:
     steps:
     - name: Print Hello Message in Testing
       run : echo "Hello World from Testing job"
-
+    
     - name: Execure few commands
       run : |
         echo "Hello Message1"
@@ -30,12 +30,14 @@ jobs:
   
     - name: List current folder
       run : ls -la
-    
   
   my_deploy:
     runs-on: ubuntu-latest
     needs: [my_testing]
-
+    env:
+      VAR1 : "This is Job Level Variable1"
+      VAR2 : "This is Job Level Variable2"
+    
     steps:
     - name: Print Hello Message in Deploy
       run : echo "Hello World from Deploy job"
@@ -57,4 +59,3 @@ jobs:
 
     - name: Lets test some packages if they are here 2
       run : zip --version
-      
